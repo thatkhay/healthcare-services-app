@@ -1,12 +1,12 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPrimaryConcerns } from "@/services/api";
-import { useStore } from "@/store/useStore";
 import { ConcernCard } from "./ConcernCard";
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ErrorMessage } from "../common/ErrorMessage";
 import { Pagination } from "../common/Pagination";
 import { useEffect } from "react";
+import { useStore } from "../../hooks/store/useStore";
 
 export function PrimaryConcernsDetail({ serviceId }) {
   const { concernsPage, perPage, setConcernsPage, selectedService } =
@@ -15,7 +15,6 @@ export function PrimaryConcernsDetail({ serviceId }) {
   console.log("PrimaryConcernsDetail - serviceId:", serviceId);
   console.log("Current concernsPage:", concernsPage);
 
-  // Reset to page 1 when serviceId changes
   useEffect(() => {
     setConcernsPage(1);
   }, [serviceId, setConcernsPage]);
@@ -25,7 +24,7 @@ export function PrimaryConcernsDetail({ serviceId }) {
     queryFn: () =>
       fetchPrimaryConcerns({ serviceId, page: concernsPage, perPage }),
     enabled: !!serviceId,
-    keepPreviousData: true, // This prevents flickering when changing pages
+    keepPreviousData: true, 
   });
 
   console.log("Query data:", data);

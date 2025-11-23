@@ -1,14 +1,16 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { fetchServices } from "@/services/api";
-import { useStore } from "@/store/useStore";
+import { useStore } from "../../hooks/store/useStore"
 import { ServiceCard } from "./ServiceCard";
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ErrorMessage } from "../common/ErrorMessage";
 import { Pagination } from "../common/Pagination";
 
 export function ServicesList() {
-  const { servicesPage, perPage, setServicesPage } = useStore();
+  const servicesPage = useStore((s) => s.servicesPage);
+  const perPage = useStore((s) => s.perPage);
+  const setServicesPage = useStore((s) => s.setServicesPage);
 
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["services", servicesPage, perPage],
