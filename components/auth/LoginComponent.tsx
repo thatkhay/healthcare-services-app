@@ -68,7 +68,7 @@ export function LoginForm({
 
   return (
     <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Admin Login</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Admin sign in</h2>
 
       <div className="space-y-4">
         <div>
